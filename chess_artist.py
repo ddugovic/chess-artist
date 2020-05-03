@@ -42,6 +42,10 @@ BOOK_COMMENT = 'Polyglot book'
 PLAN_COMMENT = ['with the idea of', 'planning', 'followed by']
     
 
+def choice(comments):
+    return sr.choice(comments)
+
+
 def DeleteFile(fn):
     """ Delete fn file """
     if os.path.isfile(fn):
@@ -240,9 +244,9 @@ class Analyze():
             posScore = -1 * posScore
         varComment = ''
         if engScore - posScore > 5 * DRAW_SCORE:
-            varComment = '%s is' % sr.choice(BEST)
+            varComment = '%s is' % choice(BEST)
         elif engScore - posScore > DRAW_SCORE:
-            varComment = '%s is' % sr.choice(BETTER)
+            varComment = '%s is' % choice(BETTER)
         return varComment
 
     def WriteSanMove(self, side, moveNumber, sanMove):
@@ -415,11 +419,11 @@ class Analyze():
                         if moveNag == '$0':
                             f.write('%d. %s {%+0.2f, %s %s} ' % (
                                 moveNumber, sanMove, posScore,
-                                sr.choice(PLAN_COMMENT), threatMove))
+                                choice(PLAN_COMMENT), threatMove))
                         else:
                             f.write('%d. %s %s {%+0.2f, %s %s} ' % (
                                 moveNumber, sanMove, moveNag, posScore,
-                                sr.choice(PLAN_COMMENT), threatMove))
+                                choice(PLAN_COMMENT), threatMove))
             # Else if side to move is black
             else:
                 if sanMove != engMove:
@@ -513,11 +517,11 @@ class Analyze():
                         if moveNag == '$0':
                             f.write('%d... %s {%+0.2f, %s %s} ' % (
                                 moveNumber, sanMove, posScore,
-                                sr.choice(PLAN_COMMENT), threatMove))
+                                choice(PLAN_COMMENT), threatMove))
                         else:
                             f.write('%d... %s %s {%+0.2f, %s %s} ' % (
                                 moveNumber, sanMove, moveNag, posScore,
-                                sr.choice(PLAN_COMMENT), threatMove))
+                                choice(PLAN_COMMENT), threatMove))
 
                 # Format output, don't write movetext in one long line.
                 if self.writeCnt >= 2:
@@ -616,12 +620,12 @@ class Analyze():
                         if moveNag == '$0':
                             f.write('%d. %s {%+0.2f, %s %s} (%d. %s {%s}) ' % (
                                 moveNumber, sanMove, posScore,
-                                sr.choice(PLAN_COMMENT), threatMove,
+                                choice(PLAN_COMMENT), threatMove,
                                 moveNumber, bookMove, BOOK_COMMENT))
                         else:
                             f.write('%d. %s %s {%+0.2f, %s %s} (%d. %s {%s}) ' % (
                                 moveNumber, sanMove, moveNag, posScore,
-                                sr.choice(PLAN_COMMENT), threatMove,
+                                choice(PLAN_COMMENT), threatMove,
                                 moveNumber, bookMove, BOOK_COMMENT))
                     # Else if there is no threat move
                     else:
@@ -672,12 +676,12 @@ class Analyze():
                         if moveNag == '$0':
                             f.write('%d... %s {%+0.2f, %s %s} (%d... %s {%s}) ' % (
                                 moveNumber, sanMove, posScore, 
-                                sr.choice(PLAN_COMMENT), threatMove,
+                                choice(PLAN_COMMENT), threatMove,
                                 moveNumber, bookMove, BOOK_COMMENT))
                         else:
                             f.write('%d... %s %s {%+0.2f, %s %s} (%d... %s {%s}) ' % (
                                 moveNumber, sanMove, moveNag, posScore,
-                                sr.choice(PLAN_COMMENT), threatMove,
+                                choice(PLAN_COMMENT), threatMove,
                                 moveNumber, bookMove, BOOK_COMMENT))
                     else:
                         if moveNag == '$0':
