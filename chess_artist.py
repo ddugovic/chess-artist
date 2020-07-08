@@ -131,7 +131,9 @@ class Analyze():
             if self.variantTag == 'Atomic':
                 return chess.variant.AtomicBoard(fen, chess960=self.game960)
             else:
-                raise Exception(f'Variant {self.variantTag} is not supported.')
+                board = chess.variant.find_variant(variant)
+                board.set_fen(fen)
+                return board
 
         return None
 
