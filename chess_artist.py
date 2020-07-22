@@ -131,7 +131,7 @@ class Analyze():
             if self.variantTag == 'Atomic':
                 return chess.variant.AtomicBoard(fen, chess960=self.game960)
             else:
-                board = chess.variant.find_variant(variant)
+                board = chess.variant.find_variant(self.variantTag)
                 board.set_fen(fen)
                 return board
 
